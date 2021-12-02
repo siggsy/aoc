@@ -1,0 +1,7 @@
+# Ignore without extension
+*
+!*.*
+!*/
+
+*.o
+*.hi
