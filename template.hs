@@ -2,7 +2,7 @@ main = interact run
 
 run :: String -> String
 run input =
-    "Part 1: " ++ show p1 ++ "\n" ++ "Part 2: " ++ show p2 ++ "\n"
+    show p1 ++ "\n" ++ show p2 ++ "\n"
     where
         parsedInput = parseInput input
         p1 = solve1 parsedInput
