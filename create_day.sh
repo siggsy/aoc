@@ -4,9 +4,7 @@ echo -e "+----------------------------+"
 echo -e "| * * * Advent Of Code * * * |"
 echo -e "+----------------------------+"
 
-day=$1
-year=$2
-if [ -z ${day+x} ]; then
+if [ -z ${1+x} ]; then
     day=$(date "%-d")
     year=$(date "%Y")
     echo -e "> No arguments specified; using defaults (day: $day, year: $year)"
