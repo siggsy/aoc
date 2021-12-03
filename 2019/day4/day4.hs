@@ -23,7 +23,7 @@ solve1 :: Input -> Output
 solve1 input = length candidates
     where
         candidates          = filter noAdjacent $ filter increasing $ map toDigits input
-        noAdjacent digits   = fst $ foldl (\(acc, prev) x -> (acc || (prev == x), x)) (False, 0) digits
+        noAdjacent digits   = any ((>= 2) . length) (group digits)
         increasing digits   = all (>= 0) (zipWith (-) (drop 1 digits) digits)
 
 toDigits num =
