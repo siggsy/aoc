@@ -2,6 +2,7 @@ import Data.List.Split
 import Data.Array (array)
 import Data.List
 import qualified Data.Set as Set
+
 main = interact run
 
 run :: String -> String
@@ -41,12 +42,20 @@ drawPath input = drop 1 $ reverse $ foldl f [(0, 0)] input
         f ((x, y) : xs) (dir, val) =
             (case dir of
                 'R' -> reverse  [ (x', y) | x' <- [x..(x + val)] ]
-                'L' ->  [ (x', y) | x' <- [(x - val)..x] ]
+                'L' ->          [ (x', y) | x' <- [(x - val)..x] ]
                 'U' -> reverse  [ (x, y') | y' <- [y..(y + val)] ]
-                'D' ->   [ (x, y') | y' <- [(y - val)..y] ]
+                'D' ->          [ (x, y') | y' <- [(y - val)..y] ]
                 _   ->          [ (x, y) ]) ++ xs
         f acc _ = acc
 
 
 solve2 :: Input -> Output
-solve2 input = -1
+solve2 (input1, input2) = length intPath1' + length intPath2' + 2
+    where
+        path1 = drawPath input1
+        path2 = drawPath input2
+        intersects = Set.toList $ Set.fromList path1 `Set.intersection` Set.fromList path2
+        (intPath1', x : xs) = break (`elem` intersects) path1
+        (intPath2', _) = span (/= x) path2
+            where firstIntersect = last intPath1'
+        
