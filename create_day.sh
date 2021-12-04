@@ -4,11 +4,8 @@ echo -e "+----------------------------+"
 echo -e "| * * * Advent Of Code * * * |"
 echo -e "+----------------------------+"
 
-if [ -z ${1+x} ]; then
-    day=$(date "%-d")
-    year=$(date "%Y")
-    echo -e "> No arguments specified; using defaults (day: $day, year: $year)"
-fi;
+day=$1
+year=$2
 
 day_name=day$day
 full_path=$year/$day_name
