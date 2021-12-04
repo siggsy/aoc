@@ -15,8 +15,8 @@ parseInput :: String -> Input
 parseInput raw = (numbers, bingoCards)
     where
         (nums : bingos) = lines raw
-        numbers = map read . splitOn "," $ nums
-        bingoCards = filter (not . null)
+        numbers         = map read . splitOn "," $ nums
+        bingoCards      = filter (not . null)
             . map (map $ \x ->
                 zip
                     (map read . words $ x)
@@ -57,8 +57,8 @@ checkNum num = map (map $ \(val, checked) ->
 won :: [[(Int, Bool)]] -> Bool
 won card = any null uncheckedNums || any null uncheckedNumsT
     where
-        partitionChecked = unzip . map (partition snd)
-        (_, uncheckedNums) = partitionChecked card
+        partitionChecked    = unzip . map (partition snd)
+        (_, uncheckedNums)  = partitionChecked card
         (_, uncheckedNumsT) = partitionChecked $ transpose card
 
 sumUnchecked :: [[(Int, Bool)]] -> Int
