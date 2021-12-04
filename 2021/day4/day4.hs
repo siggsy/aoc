@@ -17,9 +17,9 @@ parseInput raw = (numbers, bingoCards)
         (nums : bingos) = lines raw
         numbers = map read . splitOn "," $ nums
         bingoCards = filter (not . null)
-            . map (map $ \x -> 
-                zip 
-                    (map read . words $ x) 
+            . map (map $ \x ->
+                zip
+                    (map read . words $ x)
                     [False, False ..])
             . splitOn [""]
             $ bingos
@@ -33,7 +33,7 @@ solve1 input = num * sumUnchecked winning
         (num, winning) = firstToWin input
 
 solve2 :: Input -> Output
-solve2 input = num * sumUnchecked loosing 
+solve2 input = num * sumUnchecked loosing
     where
         (num, loosing) = lastToWin input
 
@@ -48,17 +48,18 @@ firstToWin (nums, cards) = (head nums, head cards)
 
 -- Updates card with number
 checkNum :: Int -> [[(Int, Bool)]] -> [[(Int, Bool)]]
-checkNum num = map (map (\(val, checked) ->
+checkNum num = map (map $ \(val, checked) ->
     if val == num
         then (val, True)
-        else (val, checked)))
+        else (val, checked))
 
 -- Checks if the card won
 won :: [[(Int, Bool)]] -> Bool
 won card = any null uncheckedNums || any null uncheckedNumsT
     where
-        (_, uncheckedNums) = unzip $ map (partition snd) card
-        (_, uncheckedNumsT) = unzip $ map (partition snd) (transpose card)
+        partitionChecked = unzip . map (partition snd)
+        (_, uncheckedNums) = partitionChecked card
+        (_, uncheckedNumsT) = partitionChecked $ transpose card
 
 sumUnchecked :: [[(Int, Bool)]] -> Int
 sumUnchecked card = sum (map (sum . map fst . filter (not . snd)) card)
