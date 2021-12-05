@@ -20,8 +20,6 @@ curl --silent 'https://adventofcode.com/'$year'/day/'$day'/input' -H 'cookie: se
 echo -e "> Creating aliases: test, run, publish1, publish2"
 echo -e "
 alias run=\"ghc $day_name.hs && ./$day_name\"
-alias publish1=\"../../publish.sh 1\"
-alias publish2=\"../../publish.sh 2\"
 " > $full_path/aliases
 echo -e "--------------------"
 echo -e "> DONE!"
