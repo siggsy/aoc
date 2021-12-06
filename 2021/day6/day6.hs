@@ -31,14 +31,14 @@ type Output = Int
 -- Fish are represented as (day, count)
 simulateDay :: [(Int, Int)] -> [(Int, Int)]
 simulateDay fish = 
-    (8, newCount) 
-        : (day7, count7) 
-        : (6, newCount + count6) 
+        (8, newCount)
+        : (7 , count7) 
+        : (6 , count6 + newCount) 
         : drop 2 (reverse (drop 1 (reverse fish')))
     where
-        [(day7, count7), (day6, count6)]    = take 2 fish'
-        (day, newCount)                     = last fish'
-        fish'                               = map (\(day, count) -> (day - 1, count)) fish
+        [(_, count7), (_, count6)]  = take 2 fish'
+        (day0, newCount)            = last fish'
+        fish'                       = map (\(day, count) -> (day - 1, count)) $ fish
     
 runSimulation :: Int -> [(Int, Int)] -> [(Int, Int)]
 runSimulation days fish = foldl (\acc x -> simulateDay acc) fish [1..days]

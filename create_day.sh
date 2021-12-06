@@ -17,7 +17,7 @@ cp template.hs $full_path/$day_name.hs
 echo -e "> Downoading input file"
 curl --silent 'https://adventofcode.com/'$year'/day/'$day'/input' -H 'cookie: session='$AOC_COOKIE'' > $full_path/$day_name.txt
 
-echo -e "> Creating aliases: test, run, publish1, publish2"
+echo -e "> Creating alias: run"
 echo -e "
 alias run=\"ghc $day_name.hs && ./$day_name\"
 " > $full_path/aliases
