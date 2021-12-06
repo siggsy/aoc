@@ -41,7 +41,7 @@ simulateDay fish =
         fish'                               = map (\(day, count) -> (day - 1, count)) fish
     
 runSimulation :: Int -> [(Int, Int)] -> [(Int, Int)]
-runSimulation days fish = foldl (\acc x -> simulateDay acc) fish [0..(days-1)]
+runSimulation days fish = foldl (\acc x -> simulateDay acc) fish [1..days]
 
 fishCount :: [(Int, Int)] -> Int
 fishCount = foldl (\nums x -> nums + snd x) 0
