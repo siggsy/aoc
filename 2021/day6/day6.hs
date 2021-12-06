@@ -13,14 +13,16 @@ run input =
 
 parseInput :: String -> Input
 parseInput raw =
-    sortBy (\(a,_) (b,_) -> compare b a) (unionBy (\x y -> fst x == fst y)
-        (map (\x -> (head x, length x))
-            . group
-            . reverse
-            . sort
-            . Prelude.map read
-            . splitOn "," $ raw)
-        [ (i, 0) | i <- [0..8] ])
+    sortBy 
+        (\(a,_) (b,_) -> compare b a)
+        (unionBy (\x y -> fst x == fst y)
+            (map (\x -> (head x, length x))
+                . group
+                . reverse
+                . sort
+                . map read
+                . splitOn "," $ raw)
+            [ (i, 0) | i <- [0..8] ])
 
 
 type Input = [(Int, Int)]
