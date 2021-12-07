@@ -38,7 +38,7 @@ simulateDay fish =
     where
         [(_, count7), (_, count6)]  = take 2 fish'
         (day0, newCount)            = last fish'
-        fish'                       = map (\(day, count) -> (day - 1, count)) $ fish
+        fish'                       = map (\(day, count) -> (day - 1, count)) fish
     
 runSimulation :: Int -> [(Int, Int)] -> [(Int, Int)]
 runSimulation days fish = foldl (\acc x -> simulateDay acc) fish [1..days]
