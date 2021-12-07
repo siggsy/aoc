@@ -22,7 +22,7 @@ type Input = [(Int, Int)]
 type Output = Int
 
 positionCost :: Int -> (Int -> Int -> Int) -> [(Int, Int)] -> Int
-positionCost pos costCalc=
+positionCost pos costCalc =
     foldl (\acc (num, count) -> costCalc pos num * count + acc) 0
 
 solve1 :: Input -> Output
