@@ -19,11 +19,13 @@ type Output = Int
 brackets :: [Char]
 brackets = ['(', '[', '<', '{']
 
+-- Cancels all brackets and returns 
+-- (remaining open brackets, remaining string) 
 cancelBrackets :: String -> String -> (String, String)
 cancelBrackets (o:os) (s:ss)
     | s `elem` brackets = cancelBrackets (s:o:os) ss
     | s == complem o    = cancelBrackets os ss
-    | otherwise         = (s:o:os, ss)
+    | otherwise         = (o:os, s:ss)
 
 cancelBrackets [] (s:ss)
     | s `elem` brackets = cancelBrackets [s] ss
@@ -66,7 +68,7 @@ solve1 =
     . map (
         points
         . head
-        . fst
+        . snd
         . cancelBrackets [])
 
 solve2 :: Input -> Output
