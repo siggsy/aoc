@@ -29,7 +29,7 @@ cancelBrackets (o:os) (s:ss)
 
 cancelBrackets [] (s:ss)
     | s `elem` brackets = cancelBrackets [s] ss
-    | otherwise         = ([s], ss)
+    | otherwise         = ([], s:ss)
 
 cancelBrackets open []  = (open, [])
 
@@ -64,12 +64,10 @@ middle l = l !! half
 
 solve1 :: Input -> Output
 solve1 = 
-    sum 
-    . map (
-        points
-        . head
-        . snd
-        . cancelBrackets [])
+    sum
+    . map (points . head)
+    . filter (not . null) 
+    . map (snd . cancelBrackets [])
 
 solve2 :: Input -> Output
 solve2 = 
