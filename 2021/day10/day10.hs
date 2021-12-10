@@ -45,7 +45,7 @@ points ')' = 3
 points ']' = 57
 points '}' = 1197
 points '>' = 25137
-points _ = 0
+points  _  = 0
 
 pointsAutocompl :: Char -> Int
 pointsAutocompl ')' = 1
